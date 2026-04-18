@@ -38,19 +38,24 @@ python train.py --reward sparse --agent ql --episodes 500000
 ## Project Structure
 
 ```
-├── train.py                          Main entry point
-├── pig_dice_env.py                   Gymnasium-style Pig Dice environment
-├── agents.py                         MC Control and Q-Learning agents
-├── rewards.py                        Reward function implementations
-├── value_iteration.py                Optimal policy via Value Iteration
-├── irl.py                            Maximum Entropy IRL
-├── evaluate.py                       Win rate evaluation and policy deviation
-├── config.py                         Hyperparameters and experiment configuration
-├── plot_results.py                   Standalone plotting from saved CSVs
-├── st_petersburg.py                  St. Petersburg Paradox utility experiments
-├── reward_density_and_policy_deviation.py  PBRS policy invariance verification
+├── train.py                               Main entry point
+├── pig_dice_env.py                        Gymnasium-style Pig Dice environment
+├── agents.py                              MC Control and Q-Learning agents
+├── rewards.py                             Reward function implementations
+├── value_iteration.py                     Optimal policy via Value Iteration
+├── irl.py                                 Maximum Entropy IRL
+├── evaluate.py                            Win rate evaluation and policy deviation
+├── config.py                              Hyperparameters and experiment configuration
+├── plot_results.py                        Standalone plotting from saved CSVs
+├── st_petersburg.py                       St. Petersburg Paradox utility experiments
+├── reward_density_and_policy_deviation.py PBRS policy invariance verification
 ├── requirements.txt
-└── README.md
+├── README.md
+└── precomputed_results/
+    ├── pig_dice/                          Learning curve CSVs and PDFs
+    ├── st_petersburg/                     Utility experiment PDFs
+    ├── optimal_policy.npz                 Cached VI policy
+    └── irl_weights.json                   Recovered IRL reward weights
 ```
 
 ## Command Reference
@@ -95,17 +100,35 @@ Fixed across all reward experiments (selected via coarse-to-fine grid search on 
 | Decay control *c* | — | 500,000 |
 | Training episodes | 1,000,000 | 1,000,000 |
 
-## Key Results
+## Results
 
-| Reward | MC Control (%) | Q-Learning (%) |
-|--------|---------------|----------------|
-| Sparse (baseline) | 33.2 | 40.7 |
-| PBRS-Φ₁ | — | **41.5+** |
-| PBRS-Φ₂ | — | — |
-| Naive Curiosity | — | — |
-| ICM | **~30+** | — |
-| Count-Based | **~33+** | — |
-| IRL (Optimal, N=200) | **~35** | **~39** |
-| IRL (Optimal, N=2000) | — | — |
+Final win rate against π* after one million training episodes, ordered by mean improvement over the sparse baseline.
 
-See `precomputed_results/pig_dice/` for Pig Dice learning curves and `precomputed_results/st_petersburg/` for utility plots.
+| Reward | Algorithm | Win Rate (%) | Δ vs Sparse (%) |
+|--------|-----------|-------------|-----------------|
+| IRL (Optimal, N=200) | MC Control | **44.2** | +11.0 |
+| | Q-Learning | 38.0 | −2.7 |
+| IRL (Sub-Optimal, N=2000) | MC Control | **42.9** | +9.7 |
+| | Q-Learning | 40.1 | −0.6 |
+| IRL (Optimal, N=2000) | MC Control | **42.4** | +9.2 |
+| | Q-Learning | 40.1 | −0.6 |
+| Count-Based | MC Control | 41.2 | +8.0 |
+| | Q-Learning | 38.0 | −2.7 |
+| IRL (Sub-Optimal, N=200) | MC Control | 39.3 | +6.1 |
+| | Q-Learning | 38.4 | −2.3 |
+| PBRS-Φ₁ | MC Control | 33.3 | +0.1 |
+| | Q-Learning | **47.6** | +6.9 |
+| ICM | MC Control | 37.1 | +3.9 |
+| | Q-Learning | 39.5 | −1.2 |
+| Sparse (baseline) | MC Control | 33.2 | 0.0 |
+| | Q-Learning | 40.7 | 0.0 |
+| PBRS-Φ₂ | MC Control | 32.6 | −0.6 |
+| | Q-Learning | 18.9 | −21.8 |
+| Naive Curiosity | MC Control | 20.4 | −12.8 |
+| | Q-Learning | 23.7 | −17.0 |
+
+See `precomputed_results/pig_dice/` for full learning curves and `precomputed_results/st_petersburg/` for utility plots.
+
+## Tools
+
+Debugging, optimisation, and repository setup assisted by [Claude Sonnet 4.5](https://www.anthropic.com/claude) (Anthropic).
