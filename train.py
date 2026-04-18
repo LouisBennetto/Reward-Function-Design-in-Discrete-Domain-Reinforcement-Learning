@@ -1018,14 +1018,17 @@ def main():
         return
 
     if args.run_st_pete:
-        from st_petersburg import plot_static_wealth, plot_cumulative_wealth
+        from st_petersburg import (plot_raw_reward, plot_utility_static_wealth,
+                                   plot_utility_cumulative_wealth)
         print("\n" + "=" * 60)
         print("ST. PETERSBURG PARADOX EXPERIMENTS")
         print("=" * 60)
-        print("\n--- Static Wealth (10M games, w=10) ---")
-        plot_static_wealth("utility_consistency_check.pdf")
-        print("\n--- Cumulative Wealth (1K games, w=10) ---")
-        plot_cumulative_wealth("st_petersburg_wealth_decay.pdf")
+        print("\n--- Raw Reward (5M games, w=10) ---")
+        plot_raw_reward("raw_reward.pdf")
+        print("\n--- Log Utility Static Wealth (5M games, w=10) ---")
+        plot_utility_static_wealth("utility_static_wealth.pdf")
+        print("\n--- Log Utility Cumulative Wealth (1K games, w=10) ---")
+        plot_utility_cumulative_wealth("utility_cumulative_wealth.pdf")
         if not any([args.run_vi, args.verify_pbrs, args.run_irl,
                     args.reward, args.agent, args.run_hypersearch,
                     args.hypersearch_zoom, args.train_best, args.density]):
