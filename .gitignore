@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Cached large binary (regenerate with: python train.py --run-vi)
+optimal_policy.npz
+
+# Root-level generated outputs (not tracked)
+/results/
+/policy_deviation_results.json
+/reward_design_curves.pdf
+/results.csv
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
