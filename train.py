@@ -38,7 +38,7 @@ import config
 # Optimal Policy
 # ======================================================================
 def compute_or_load_optimal_policy(force_recompute=False, verbose=True):
-    cache_path = "optimal_policy.npz"
+    cache_path = "precomputed_results/optimal_policy.npz"
     if not force_recompute and os.path.exists(cache_path):
         if verbose:
             print("Loading cached optimal policy...")
@@ -293,7 +293,7 @@ def train_agent_multi_seed(agent_type, reward_name, reward_kwargs, optimal_pi,
 # IRL Experiments
 # ======================================================================
 def run_irl_experiments(optimal_pi, opponent_policy_fn,
-                        weights_file="irl_weights.json"):
+                        weights_file="precomputed_results/irl_weights.json"):
     from irl import maxent_irl, generate_expert_trajectories
     import json
 

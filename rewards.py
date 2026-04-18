@@ -151,7 +151,7 @@ class IRLReward:
     """Linear reward R_theta(s,a) = theta^T phi(s,a) from MaxEnt IRL weights."""
     name = "irl"
 
-    def __init__(self, theta_key, weights_file="irl_weights.json"):
+    def __init__(self, theta_key, weights_file="precomputed_results/irl_weights.json"):
         if not os.path.exists(weights_file):
             raise FileNotFoundError(
                 f"IRL weights not found at '{weights_file}'. "
