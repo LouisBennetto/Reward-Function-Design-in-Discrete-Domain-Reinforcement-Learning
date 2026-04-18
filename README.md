@@ -76,7 +76,7 @@ python train.py --hypersearch-zoom --hypersearch-agent ql
 python train.py --train-best --hypersearch-csv hypersearch_results.csv
 
 # Regenerate plots from saved CSVs
-python plot_results.py --results-dir precomputed_results/
+python plot_results.py --results-dir precomputed_results/pig_dice/
 
 # St. Petersburg Paradox
 python train.py --run-st-pete
@@ -108,4 +108,4 @@ Fixed across all reward experiments (selected via coarse-to-fine grid search on 
 | IRL (Optimal, N=200) | **~35** | **~39** |
 | IRL (Optimal, N=2000) | — | — |
 
-See `precomputed_results/` for full learning curves.
+See `precomputed_results/pig_dice/` for Pig Dice learning curves and `precomputed_results/st_petersburg/` for utility plots.
