@@ -129,6 +129,17 @@ Final win rate against π* after one million training episodes, ordered by mean 
 
 See `precomputed_results/pig_dice/` for full learning curves and `precomputed_results/st_petersburg/` for utility plots.
 
+Each configuration is averaged over four seeds, as specified in `config.py` and
+as discussed in the limitations of the accompanying dissertation. Confidence
+intervals are therefore not reported, and differences of a few percentage points
+between two rewards should be read as indicative rather than conclusive. The
+large separations, such as the eleven point gain of IRL over the sparse baseline
+under Monte Carlo control, or the twenty two point loss of PBRS-Φ₂ under
+Q-learning, are considerably wider than the small differences and are the ones
+the discussion relies upon. A seed and confidence interval study is deferred to
+the extension repository so that the results here remain aligned with the
+dissertation text.
+
 ## Tools
 
 Debugging, optimisation, and repository setup assisted by [Claude Sonnet 4.5](https://www.anthropic.com/claude) (Anthropic).
