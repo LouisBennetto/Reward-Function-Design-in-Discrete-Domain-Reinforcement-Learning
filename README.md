@@ -7,12 +7,14 @@ Reinforcement learning case study comparing reward design techniques in the dice
 | Method | Description |
 |--------|-------------|
 | **Sparse** | Latent +1/−1 win/loss signal (baseline) |
-| **PBRS (Φ₁)** | Potential-based shaping on banked-score lead |
-| **PBRS (Φ₂)** | Potential-based shaping on turn total |
+| **PBRS (Φ₁)** | Intuitive potential-based shaping on banked-score lead |
+| **PBRS (Φ₂)** | Counter-intuitive potential-based shaping on turn total |
 | **Naive Curiosity** | Prediction-error intrinsic motivation |
 | **ICM** | Intrinsic Curiosity Module (latent-space filtered) |
 | **Count-Based** | Visitation-count exploration bonus |
 | **IRL** | MaxEnt Inverse RL from expert trajectories |
+
+These seven methods give ten reward functions in total, because IRL is run in four variants: an optimal expert and a sub-optimal expert (ε = 0.05), each with 200 and 2,000 expert trajectories (`REWARD_METHODS` in `config.py`).
 
 ## Quick Start
 
